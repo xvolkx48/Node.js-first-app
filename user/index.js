@@ -1,11 +1,11 @@
 var phrases = require('./ru');
 
-function Index(name) {
+function User(name) {
     this.name = name;
 }
 
-Index.prototype.hello = function(who) {
+User.prototype.hello = function(who) {
     console.log(phrases.Hello+", " +who.name);
 };
 
-exports.User= Index;
+module.exports = User;
