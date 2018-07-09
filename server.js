@@ -1,22 +1,11 @@
-var log = require('./logger')(module)
+var http =require('http');
 
-var db = require('./db');
-db.connect();
+var server = new http.Server(); //EventEmitter
 
-var User = require('./user');
+server.listen(3000,'127.0.0.1');
 
-function run() {
-    var vasya = new User("Вася");
-    var petya = new User("Петя");
-    vasya.hello(petya);
+var counter = 0;
 
-    log(db.getPhrase("Run successful"));
-}
-
-
-if (module.parent){
-    exports.run = run;
-}else
-{
-    run();
-}
+server.on('request', function (req, res) {
+    res.end("Привет мир!!! " + ++counter);
+});
